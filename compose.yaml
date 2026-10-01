@@ -44,7 +44,7 @@ services:
       SONG_DB_URL: ${SONG_DB_URL}
       SONG_DB_USER: ${SONG_DB_USER}
       SONG_DB_PASSWORD: ${SONG_DB_PASSWORD}
-      EUREKA_SERVICE_URL: http://eureka-service:${EUREKA_SERVICE_PORT}/eureka/
+      EUREKA_SERVICE_URL: http://${EUREKA_SERVICE_NAME}:${EUREKA_SERVICE_PORT}/eureka/
     depends_on:
       song-db:
         condition: service_healthy
@@ -58,8 +58,8 @@ services:
       RESOURCE_DB_URL: ${RESOURCE_DB_URL}
       RESOURCE_DB_USER: ${RESOURCE_DB_USER}
       RESOURCE_DB_PASSWORD: ${RESOURCE_DB_PASSWORD}
-      SONG_SERVICE_URL: http://song-service:${SONG_SERVICE_PORT}
-      EUREKA_SERVICE_URL: http://eureka-service:${EUREKA_SERVICE_PORT}/eureka/
+      SONG_SERVICE_URL: http://${SONG_SERVICE_NAME}:${SONG_SERVICE_PORT}
+      EUREKA_SERVICE_URL: http://${EUREKA_SERVICE_NAME}:${EUREKA_SERVICE_PORT}/eureka/
     depends_on:
       resource-db:
         condition: service_healthy
@@ -80,4 +80,4 @@ services:
     environment:
       GATEWAY_PORT: ${GATEWAY_PORT}
       EUREKA_SERVICE_PORT: ${EUREKA_SERVICE_PORT}
-      EUREKA_SERVICE_URL: http://eureka-service:${EUREKA_SERVICE_PORT}/eureka/
+      EUREKA_SERVICE_URL: http://${EUREKA_SERVICE_NAME}:${EUREKA_SERVICE_PORT}/eureka/
