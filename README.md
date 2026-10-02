@@ -24,7 +24,7 @@ docker run --rm --name song-service --network im3_default --env-file .env \
 
 docker build -t resource-service ./resource_service
 docker run --rm --name resource-service --network im3_default --env-file .env \
-  -e SONG_SERVICE_URL=http://song-service:8081 \
+  -e SONG_SERVICE_NAME=song-service \
   -p 8080:8080 resource-service
 ```
 

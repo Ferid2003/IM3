@@ -1,6 +1,7 @@
 package farid.aghazada.resource_service.Client;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -11,8 +12,8 @@ public class SongServiceClient {
 
     private final RestClient restClient;
 
-    public SongServiceClient(@Value("${song.service.url}") String songServiceUrl) {
-        this.restClient = RestClient.create(songServiceUrl);
+    public SongServiceClient(@LoadBalanced RestClient.Builder builder, @Value("${song.service.name}") String songServiceName) {
+        this.restClient = builder.baseUrl("http://" + songServiceName).build();
     }
 
     public void createSongMetadata(SongMetadataRequestDTO payload) {
